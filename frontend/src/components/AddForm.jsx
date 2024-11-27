@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const AddForm = () => {
     const [newLink, setNewLink] = useState({
         url:'',
         description:'',
     })
+    const navigate = useNavigate();
+
 
     const handleAddLink = async (newLink) => {
         
@@ -21,6 +24,7 @@ const AddForm = () => {
 
         const json = await response.json()
         setNewLink({url:'', description:''})
+        navigate("/")
     };
     
     
@@ -41,7 +45,7 @@ const AddForm = () => {
             <br />
             <div className='grid grid-cols-2 divide-x-3 pt-4 pb-6 ml-48'>
                 <button className='w-20 ml-8 mr-8'></button>
-                <button className='bg-green-400 border border-green-800 w-20 font-mono text-lg rounded ml-32'
+                <button className='bg-green-300 border border-green-800 hover:bg-green-400 w-20 font-mono text-lg rounded ml-32'
                 onClick={() => {
                     handleAddLink(newLink)
                 }}>Add</button>
